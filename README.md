@@ -1,0 +1,2 @@
+# scamDetection
+Detects Scam :-)
