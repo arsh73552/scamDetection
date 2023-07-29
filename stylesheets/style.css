@@ -1,10 +1,53 @@
-.websiteFrame {
-    position: absolute;
-    margin-top: 5%;
-    height: 100%;
-    width: 100%;
+/* stylesheets/style.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
-iframe{
+
+/* Center the search bar vertically and add some margin at the top */
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.searchBar {
+    font-size: 24px;
+    height: 50px;
+    width: 50%;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    padding: 10px 20px;
+    background: url("../resources/searchLogo.png") no-repeat;
+    background-size: 24px;
+    background-position: 95%;
+    outline: none;
+}
+
+/* Style the iframe container */
+.websiteFrame {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Style the iframe */
+iframe {
     height: 100%;
     width: 100%;
+    border: none;
+    border-radius: 10px;
+}
+
+/* Optional: Add a nice box-shadow to the search bar */
+.searchBar:focus {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }

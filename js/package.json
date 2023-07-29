@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "onnxjs": "^0.1.8",
+    "onnxruntime-node": "^1.15.1"
+  }
+}
