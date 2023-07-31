@@ -1,4 +1,5 @@
 const whois = require('whois');
+const extract = require('./extract');
 var valid = 0
 /**
  * Checks whether the given string contains the pattern.
@@ -7,6 +8,12 @@ var valid = 0
  * @param {string} pattern - The pattern to be looked for in the input str.
  * @returns {number} - Returns 1 if the pattern is found, otherwise returns 0.
  */
+
+function getDomainLen(url){
+  const parsedURL = new URL(url);
+  return (parsedURL.hostname).len;
+}
+
 function checkForPat(str, pattern) {
     if (typeof str === 'string' && str.includes(pattern)) {
       return 1; // pattern is found, return 1
@@ -35,3 +42,29 @@ setTimeout(function(){
     console.log(checkWhois("google.com"))
 }, 3000);
 
+async function listForModel(url){
+  var inputList = [];
+
+  
+  const result = await extract.getWhoisValidity('google.com');
+  console.log(result);
+  const result2 = await extract.getActiveDuration('google.com');
+  console.log(result2);
+  inputList.push(1);
+  inputList.push(2);
+  inputList.push(3);
+
+  // inputList.push(extract.containsIPAddress(url));
+  // inputList.push(result);
+  // inputList.push(result2);
+  // inputList.push(url.length);
+  // inputList.push(checkForPat(url, '@'));
+  // inputList.push(checkForPat(url, '//'));
+  // inputList.push(checkForPat(url, '-'));
+  //inputList.push(getDomainLen(url));
+  
+  return inputList;
+}
+
+console.log(listForModel("google.com"));
+module.exports = {listForModel};

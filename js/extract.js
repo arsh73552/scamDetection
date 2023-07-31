@@ -1,5 +1,4 @@
 const axios = require('axios');
-const jsdom = require("jsdom");
 const moment = require('moment');
 
 /**
@@ -85,11 +84,13 @@ async function getActiveDuration(url) {
   
     return activeDays.toFixed(2);
   }
-  
+ 
+async function containsIPAddress(str) {
+  // Regular expression pattern to match an IP address
+  const ipAddressPattern = /\b(?:\d{1,3}\.){3}\d{1,3}\b/;
 
-(async () => {
-      const result = await getWhoisValidity('google.com');
-      console.log(result);
-      const result2 = await getActiveDuration('google.com');
-      console.log(result2);
-  })();
+  // Use the test method of RegExp to check if the pattern matches the string
+  return ipAddressPattern.test(str);
+}
+
+module.exports = {getActiveDuration, getWhoisValidity, containsIPAddress};

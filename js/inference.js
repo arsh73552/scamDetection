@@ -14,4 +14,5 @@ async function testList(list) {
     }
 }
 
-testList([82064, 12572, 0, 0, 27, 0, 0, 0, 26])
+const maxList = [1,1,15707,2175,1,1,1,244]
+module.exports = {testList};
