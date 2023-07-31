@@ -24,7 +24,7 @@ bar.addEventListener("keypress", function(e)
             body: JSON.stringify({ 
                 websiteURL: bar.value
             })
-        });
+        }).then(response => console.log(`Response: ${response.body}`));
     }
    
 });

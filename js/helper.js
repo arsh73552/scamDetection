@@ -66,7 +66,7 @@ async function getFinalOutput(url)
   return output;
 }
 
-async function testFunction(url)
+async function testIfWebsitePhishy(url)
 {
   let output = await getFinalOutput(url)
   if(output.dense_3.data[0] > 0.5)
@@ -78,5 +78,4 @@ async function testFunction(url)
   return false;
 }
 
-testFunction('cuchd.in')
-module.exports = {listForModel};
+module.exports = {listForModel, testIfWebsitePhishy};
