@@ -4,6 +4,7 @@
     "cheerio": "^1.0.0-rc.12",
     "cors": "^2.8.5",
     "jsdom": "^22.1.0",
+    "moment": "^2.29.4",
     "onnxjs": "^0.1.8",
     "onnxruntime-node": "^1.15.1",
     "url": "^0.11.1",
