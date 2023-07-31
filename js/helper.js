@@ -1,6 +1,7 @@
 const whois = require('whois');
 const extract = require('./extract');
-var valid = 0
+const infer = require('./inference.js')
+var domain = ""
 /**
  * Checks whether the given string contains the pattern.
  *
@@ -10,8 +11,12 @@ var valid = 0
  */
 
 function getDomainLen(url){
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    url = 'https://' + url;
+  }
   const parsedURL = new URL(url);
-  return (parsedURL.hostname).len;
+  domain = (parsedURL.hostname)
+  return (parsedURL.hostname).length;
 }
 
 function checkForPat(str, pattern) {
@@ -38,33 +43,40 @@ async function getWhoisResult(url)
     return message;
 }
 
-setTimeout(function(){ 
-    console.log(checkWhois("google.com"))
-}, 3000);
-
 async function listForModel(url){
   var inputList = [];
-
-  
-  const result = await extract.getWhoisValidity('google.com');
-  console.log(result);
-  const result2 = await extract.getActiveDuration('google.com');
-  console.log(result2);
-  inputList.push(1);
-  inputList.push(2);
-  inputList.push(3);
-
-  // inputList.push(extract.containsIPAddress(url));
-  // inputList.push(result);
-  // inputList.push(result2);
-  // inputList.push(url.length);
-  // inputList.push(checkForPat(url, '@'));
-  // inputList.push(checkForPat(url, '//'));
-  // inputList.push(checkForPat(url, '-'));
-  //inputList.push(getDomainLen(url));
-  
+  const result = await extract.getWhoisValidity(domain);
+  const result2 = await extract.getActiveDuration(domain);
+  inputList.push(extract.containsIPAddress(url));
+  inputList.push(result);
+  inputList.push(result2);
+  inputList.push(url.length);
+  inputList.push(checkForPat(url, '@'));
+  inputList.push(checkForPat(url, '//'));
+  inputList.push(checkForPat(url, '-'));
+  inputList.push(getDomainLen(url))
   return inputList;
 }
 
-console.log(listForModel("google.com"));
+async function getFinalOutput(url)
+{
+  getDomainLen(url)
+  var inputList = await listForModel(url);
+  var output = await infer.testList(inputList);
+  return output;
+}
+
+async function testFunction(url)
+{
+  let output = await getFinalOutput(url)
+  if(output.dense_3.data[0] > 0.5)
+  {
+    console.log("Returning True!")
+    return true;
+  }
+  console.log("Returning False!")
+  return false;
+}
+
+testFunction('cuchd.in')
 module.exports = {listForModel};

@@ -42,7 +42,7 @@ async function getWhoisValidity(url) {
     let response = await axiosResponse(url);
   
     // Check if the response data contains "No match", indicating the URL is not valid
-    if (response.data.includes('No match'))
+    if (response.data.includes('No match') || response.data.includes('WHOIS data currently unavailable.'))
       return 0;
     
     // If "No match" not found, consider the URL as valid
@@ -67,7 +67,7 @@ async function getActiveDuration(url) {
     let response = await axiosResponse(url);
   
     // Check if the response data contains "No match", indicating the URL is not valid
-    if (response.data.includes('No match'))
+    if (response.data.includes('No match') || response.data.includes('WHOIS data currently unavailable.'))
       return 0;
   
     // If the URL is valid, parse the registration date from the WHOIS response
@@ -85,7 +85,7 @@ async function getActiveDuration(url) {
     return activeDays.toFixed(2);
   }
  
-async function containsIPAddress(str) {
+function containsIPAddress(str) {
   // Regular expression pattern to match an IP address
   const ipAddressPattern = /\b(?:\d{1,3}\.){3}\d{1,3}\b/;
 
