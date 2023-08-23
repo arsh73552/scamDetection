@@ -23,6 +23,7 @@ body {
     background: url("../resources/searchLogo.png") no-repeat;
     background-size: 24px;
     background-position: 95%;
+    padding-right: 7%;
     outline: none;
 }
 

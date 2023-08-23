@@ -24,7 +24,16 @@ bar.addEventListener("keypress", function(e)
             body: JSON.stringify({ 
                 websiteURL: bar.value
             })
-        }).then(response => console.log(`Response: ${response.body}`));
+        }).then(response => response.json())
+        .then(response => {
+            const res = response.phishingWebsite;
+            if(res){
+                window.alert("Phishing Site!! continue anyway ?");
+            }
+            else
+                console.log(res);
+            
+        });
     }
    
 });
