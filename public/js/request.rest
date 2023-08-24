@@ -1,0 +1,8 @@
+POST http://localhost:8080/upload
+Content-Type: application/json
+
+{
+    "websiteURL" : "www.kaoshi169.com/walmart/online.html"
+}
+//www415.paypal.ca.20053.securessl-150.mx/js/web.apps/ca/m.pp/?cmnd=_lg&nav=_4792E694B2CF7F2A9778
+//huarui-tec.com/js/?us.battle.net/login/en/?ref=gofcuyeus.battle.net/d3/en/index
